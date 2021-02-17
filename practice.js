@@ -10,6 +10,9 @@
 let user = {
 	username: "bencallis",
 	email: "bencallis1@gmail.com",
+  getUserName: function() {
+    return this.username;
+  }
     // Code here
 };
 
@@ -31,7 +34,7 @@ let user1 = {
 };
 
 const getUsername = function () {
-    // Code here
+    return this.username;
 };
 
 const username = getUsername.call(user1);
@@ -57,7 +60,7 @@ function getOtherUsername() {
 };
 
 // Code here
-
+const otherUsername = getOtherUsername.call(user2);
 
 
 ////////// PROBLEM 4 //////////
@@ -73,7 +76,8 @@ function getOtherUsername() {
 
 // Code here
 
-
+const username1 = getOtherUsername.call(user1);
+const username2 = getOtherUsername.call(user2);
 
 ////////// PROBLEM 5 //////////
 
