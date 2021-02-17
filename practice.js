@@ -99,6 +99,7 @@ function add(a, b, c) {
 
 // Code here
 
+const result = add.apply(obj, nums);
 
 
 ////////// PROBLEM 6 //////////
@@ -120,7 +121,7 @@ const getName = function () {
 };
 
 // Code here
-
+const name = getName.bind(favRapper)
 
 
 ////////// PROBLEM 7 //////////
@@ -133,7 +134,9 @@ const getName = function () {
 */
 
 function Car (color, make, year){
-    // Code here
+    this.color = color;
+    this.make = make;
+    this.year = year
 }
 
 
@@ -151,9 +154,10 @@ function CarMaker (make, model, year) {
 	this.make = make;
 	this.model = model;
 	this.year = year;
-    this.move = 0;
-    
-    // Code here
+  this.move = 0;
+  this.moveCar = function() {
+    return this.move += 10;
+  }
 };
 
 
@@ -171,6 +175,13 @@ function CarMaker (make, model, year) {
 
 // Code here
 
+function Player(name, age, team, pointsScored) {
+  this.name = name;
+  this.age = age;
+  this.team = team;
+  this.pointsScored = pointsScored;
+  this.addPoints = (num) => this.pointsScored += num;
+}
 
 
 ////////// PROBLEM 10 //////////
@@ -184,17 +195,15 @@ function CarMaker (make, model, year) {
 
 function Restaurant(name, type, stars) {
     this.name = name;
-	this.type = type;
+	  this.type = type;
     this.stars = stars;
-    
-    this.addStars = function (num) {
-        this.stars += num;
-        return this.stars;
-    };
 }
 
 // Code here
-
+Restaurant.prototype.addStars = function(num) {
+  this.stars += num;
+  return this.stars;
+};
 
 
 ////////// PROBLEM 11 //////////
@@ -219,8 +228,14 @@ function Person(name, age, hometown, email, friends) {
 }
 
 // Code here
+Person.prototype.addFriend = function(str) {
+  this.friends.push(str)
+}
 
+Person.prototype.removeFriend = function(str) {
+  this.friends = this.friends.filter(val => val != str)
 
+}
 
 ////////// PROBLEM 12 //////////
 
@@ -239,7 +254,19 @@ function Person(name, age, hometown, email, friends) {
 */
 
 // Code here
+function User(name, age, email, savedPosts) {
+  this.name = name;
+  this.email = email;
+  this.age = age;
+  this.savedPosts = savedPosts;
+}
 
+User.prototype.addSavedPost = function (id, title, rating) {
+  let toAdd = {
+    id, title, rating
+  }
+  this.savedPosts.push(toAdd)
+}
 
 
 ////////// PROBLEM 13 //////////
@@ -253,7 +280,9 @@ function Person(name, age, hometown, email, friends) {
 
 // Code here
 
-
+User.prototype.removeSavedPost = function(num) {
+  this.savedPosts = this.savedPosts.filter(val => val.id != num)
+}
 
 ////////// PROBLEM 14 //////////
 
@@ -265,3 +294,6 @@ function Person(name, age, hometown, email, friends) {
 */
 
 // Code here
+User.prototype.changePostRating = function(id, newRating) {
+  this.savedPosts.forEach( val => val.id === id ? val.rating = newRating: null)
+}
